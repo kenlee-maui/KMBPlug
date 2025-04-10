@@ -1,0 +1,44 @@
+-- UI Library Example (You can replace with your own UI library)
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/UI-Library/main/uilib.lua"))()
+
+local window = library:CreateWindow("Synth X V3.4 | Infinite Money GUI")
+
+local money = 0
+local donationAmount = 1000
+local normalMaxMoney = 990000
+local gamepassMaxMoney = 1600000
+local hasGamepass = false -- Set this to true if you detect a real gamepass
+
+-- MAIN: AutoFarm Tab
+local autofarmTab = window:CreateTab("AutoFarm")
+
+autofarmTab:CreateToggle("Cash Farm (Look Down!)", function(value)
+    if value then
+        print("Cash Farm started...")
+        -- Your Cash Farm logic here
+    else
+        print("Cash Farm stopped.")
+    end
+end)
+
+autofarmTab:CreateToggle("Enable Server Hop", function(value)
+    if value then
+        print("Server Hop Enabled after farming.")
+        -- Your Server Hop logic here
+    else
+        print("Server Hop Disabled.")
+    end
+end)
+
+-- MONEY: Infinite Money Button
+local moneyTab = window:CreateTab("Money")
+
+moneyTab:CreateButton("Infinite Money", function()
+    local maxMoney = hasGamepass and gamepassMaxMoney or normalMaxMoney
+    -- Set money to maximum
+    money = maxMoney
+    print("Infinite Money Granted! Current Money: $" .. money)
+end)
+
+-- Others tabs can be added like "Credits", "Visual", "Player", etc.
